@@ -1,6 +1,7 @@
 const path = require('path');
 
 module.exports = {
+	mode:'development',
 	entry:{
 		model:'./src/model.js',
 		view:'./src/view.js',
