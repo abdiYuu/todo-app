@@ -39,17 +39,5 @@ class Task {
 	daysRemaining() {
 	}
 }
-let abdi = new User([
-	new Task('brush teeth', '', '3pm', '1', '', ''),
-	new Task('wash dishes', '', '2pm', '2', '', ''),
-	new Task('attend appt', '', '3:20pm', '3', '', ''),
-], [
-	new Project('todo-app', '', 'july 7', '5', '', '')
-]);
 
-
-console.log(abdi.taskCount())
-console.table(abdi.tasks);
-console.table(abdi.projects);
-abdi.projects[0].addTask(new Task('create model module', '', 'today', '5', '', ''));
-console.table(abdi.projects[0].tasks)
+export {Task}
