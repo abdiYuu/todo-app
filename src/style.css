@@ -30,6 +30,7 @@ header {
 }
 
 .sidebar {
+	overflow-y:auto;
 	height:100vh;
 	border:1px solid green;
 	grid-area:sidebar;

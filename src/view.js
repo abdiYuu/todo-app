@@ -2,10 +2,12 @@ import {User} from './model.js';
 import {Project} from './model.js';
 import {Task} from './model.js';
 import './style.css'
-const dashboard = document.querySelector('.container');
-let btn = document.querySelector('button');
+const taskbar = document.querySelector('.sidebar');
+const taskbtn = document.querySelector('.btn_task');
+const projbtn = document.querySelector('.btn_proj');
 
-btn.addEventListener('click', displayTask);
+taskbtn.addEventListener('click', displayTask);
+projbtn.addEventListener('click', displayProject);
 
 function makeTaskCard() {
 	const card = document.createElement('div');
@@ -17,7 +19,7 @@ function makeTaskCard() {
 	card.appendChild(description);
 	card.appendChild(dueDate);
 
-	dashboard.appendChild(card);
+	taskbar.appendChild(card);
 return {title, description, dueDate};
 }
 function displayTask() {
@@ -28,4 +30,8 @@ function displayTask() {
 	description.innerText = task.description;
 	dueDate.innerText = task.dueDate;
 
+}
+
+function displayProject() {
+	console.table(new Project('', '', '', '', '', ''))
 }
