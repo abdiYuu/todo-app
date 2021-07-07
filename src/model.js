@@ -40,4 +40,4 @@ class Task {
 	}
 }
 
-export {Task}
+export {User, Project, Task}
