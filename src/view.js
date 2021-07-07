@@ -1,7 +1,7 @@
 import {User} from './model.js';
 import {Project} from './model.js';
 import {Task} from './model.js';
-
+import './style.css'
 const dashboard = document.querySelector('.container');
 let btn = document.querySelector('button');
 
