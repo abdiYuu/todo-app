@@ -21,6 +21,7 @@ function makeTaskCard() {
 
 	taskbar.appendChild(card);
 return {title, description, dueDate};
+
 }
 function displayTask() {
 	let task = new Task('test', 'a test task', 'now', '1', 'n/a', 'n/a');
@@ -32,6 +33,22 @@ function displayTask() {
 
 }
 
-function displayProject() {
-	console.table(new Project('', '', '', '', '', ''))
+function makeProjectTab() {
+	const container = document.querySelector('.container');
+        const title = document.createElement('h1');
+        const description = document.createElement('p');
+        const dueDate = document.createElement('p');
+	
+	container.appendChild(title);
+	container.appendChild(description);
+	container.appendChild(dueDate);
+	return {title, description, dueDate};
+}
+
+function displayProject() {	
+	const proj = new Project('todoapp', 'an app', 'tomorrow?', '', '', '');
+	let {title, description, dueDate} = makeProjectTab();
+	title.innerText = proj.title;
+	description.innerText = proj.description;
+	dueDate.innerText = proj.dueDate;
 }
