@@ -2,12 +2,16 @@ import {User} from './model.js';
 import {Project} from './model.js';
 import {Task} from './model.js';
 import './style.css'
+
 const taskbar = document.querySelector('.sidebar');
 const taskbtn = document.querySelector('.btn_task');
 const projbtn = document.querySelector('.btn_proj');
+const tabs = document.querySelector('.projects');
 
 taskbtn.addEventListener('click', displayTask);
 projbtn.addEventListener('click', displayProject);
+
+let projects = []; //placeholder to test tab functionality
 
 function makeTaskCard() {
 	const card = document.createElement('div');
@@ -58,8 +62,8 @@ function makeProjectTab() {
 	return {title, description, dueDate, priority, notes, tasks};
 }
 
-function displayProject() {	
-	const proj = new Project('todoapp', 'an app', 'tomorrow?', '1', 'idk', ['man', 'go']);
+function displayProject(proj) {
+	projects.push(proj);
 	let {title, description, dueDate, priority, notes, tasks} = makeProjectTab();
 	title.innerText = proj.title;
 	description.innerText = proj.description;
@@ -67,5 +71,17 @@ function displayProject() {
 	priority.innerText = proj.priority;
 	notes.innerText = proj.notes;
 	tasks.innerText = proj.tasks;
+	
+	const tab = document.createElement('button');
+	tab.innerText = proj.title;
+	tab.id = projects.indexOf(proj);
+
+	tab.addEventListener('click', switchTab);
+	tabs.appendChild(tab);
+
 }
 
+function switchTab(e) {
+	document.querySelector('.container').innerHTML = '';
+	displayProject(projects[e.target.id]);
+}

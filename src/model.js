@@ -36,8 +36,6 @@ class Task {
 		this.notes = notes;
 		this.checklist = checklist;
 	}
-	daysRemaining() {
-	}
 }
 
 export {User, Project, Task}
