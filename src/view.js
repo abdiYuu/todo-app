@@ -4,6 +4,7 @@ import {Task} from './model.js';
 import './style.css'
 
 const taskbar = document.querySelector('.sidebar');
+const container = document.querySelector('.container');
 const taskbtn = document.querySelector('.btn_task');
 const projbtn = document.querySelector('.btn_proj');
 const tabs = document.querySelector('.projects');
@@ -15,13 +16,17 @@ let projects = []; //placeholder to test tab functionality;
 let tasks = []; //placeholder for tasks;
 
 function makeProject() {
-	let proj = new Project('test', 'test', 'test', 'test', 'test', 'test');
+	let name = prompt('Enter a name');
+	let proj = new Project(name, 'test', 'test', 'test', 'test', 'test');
 	projects.push(proj);
 	return proj;
 }
 
 function makeProjectTab() {
-        const container = document.querySelector('.container');
+	while(container.children.length > 1) {
+		container.removeChild(container.lastElementChild);
+	}
+
         const title = document.createElement('h1');
         const description = document.createElement('p');
         const dueDate = document.createElement('p');
@@ -46,10 +51,19 @@ function makeProjectTab() {
 }
 
 function displayProject(e) {
+	let proj;
+	let tab;
 	if (e.target.id) {
-		let proj = projects[e.target.id]
+		proj = projects[e.target.id]
 	} else {		
-		let proj = makeProject();
+		proj = makeProject();
+		tab = document.createElement('button');
+		tab.innerText = proj.title;
+		tab.id = projects.indexOf(proj);
+
+		tab.addEventListener('click', displayProject);
+		tabs.appendChild(tab);
+
 	}
 
         let {title, description, dueDate, priority, notes, tasks} = makeProjectTab();
@@ -59,13 +73,6 @@ function displayProject(e) {
         priority.innerText = proj.priority;
         notes.innerText = proj.notes;
         tasks.innerText = proj.tasks;
-
-        const tab = document.createElement('button');
-        tab.innerText = proj.title;
-        tab.id = projects.indexOf(proj);
-
-        tab.addEventListener('click', displayProject);
-        tabs.appendChild(tab);
 
 }
 
