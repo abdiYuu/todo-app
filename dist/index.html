@@ -12,12 +12,6 @@
 	<div class='content'>
 		<header>
 			<div class='projects'>
-				<form class='visibility' onsubmit='return false'>
-                        		<label for='title'>Title
-                                		<input type='text' id='title' required>
-                        		</label>
-                       			<button class='submit' type='submit' style='display:block;'>Submit</button>
-                		</form>
 			</div>
 		</header>
 		<div class='sidebar'>
@@ -25,6 +19,13 @@
 		</div>
 		<div class='container'>
 			<button class='btn_proj'>New Project</button>
+			<form class='visibility' onsubmit='return false'>
+				<label for='title'>Title
+					<input type='text' id='title' required>
+				</label>
+				<button class='submit' type='submit' style='display:block;'>Submit</button>
+			</form>
+
 		</div>
 	</div>
 	<script src='./view.bundle.js'></script>

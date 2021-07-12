@@ -25,14 +25,27 @@ function makeProject() {
 	let title = document.getElementById('title').value;
 	let proj = new Project(title, '' ,'', '', '', '');
 	projects.push(proj);
-	displayProject(proj)
+	makeProjectSection(proj)
+	toggleForm();
 }
 
-function displayProject(proj) {
-	const projtitle = document.createElement('h1');
-	projtitle.innerText = proj.title;
-	
-	container.appendChild(projtitle);
+function makeProjectSection(proj) {
+	const project = document.createElement('div');
+        project.classList.add('project');
+        project.id=projects.indexOf(proj);
+        const projtitle = document.createElement('h1');
+        projtitle.innerText = proj.title;
+
+        project.appendChild(projtitle);
+
+	displayProject(project);
+}
+
+function displayProject(project) {
+	while(container.children.length > 2) { // the form and the button
+		container.removeChild(container.lastElementChild)
+	}
+	container.appendChild(project);
 }
 
 function makeTask() {
