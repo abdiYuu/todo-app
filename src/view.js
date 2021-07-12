@@ -13,6 +13,12 @@ projbtn.addEventListener('click', displayProject);
 
 let projects = []; //placeholder to test tab functionality
 
+function makeProject() {
+	let proj = new Project('test', 'test', 'test', 'test', 'test', 'test');
+	projects.push(proj);
+	return proj;
+}
+
 function makeTaskCard() {
 	const card = document.createElement('div');
 	const title = document.createElement('h1');
