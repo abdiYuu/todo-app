@@ -23,7 +23,8 @@ function toggleForm() {
 
 function makeProject() {
 	let title = document.getElementById('title').value;
-	let proj = new Project(title, '' ,'', '', '', '');
+	let dueDate = document.getElementById('date').value;
+	let proj = new Project(title, '' , dueDate, '', '', '');
 	projects.push(proj);
 	makeProjectSection(proj)
 	toggleForm();
@@ -33,10 +34,15 @@ function makeProjectSection(proj) {
 	const project = document.createElement('div');
         project.classList.add('project');
         project.id=projects.indexOf(proj);
+
         const projtitle = document.createElement('h1');
         projtitle.innerText = proj.title;
 
+	const projdue = document.createElement('p');
+	projdue.innerText = 'Due: ' + proj.dueDate;
+
         project.appendChild(projtitle);
+	project.appendChild(projdue);
 
 	displayProject(project);
 }
