@@ -45,10 +45,18 @@ function makeProjectSection(proj) {
 	project.appendChild(projdue);
 
 	displayProject(project);
+	makeProjectTab(proj);
+}
+function makeProjectTab(proj) {
+	const tab = document.createElement('button');
+	tab.innerText = proj.title;
+	tab.id = projects.indexOf(proj);
+	tabs.appendChild(tab);
 }
 
+
 function displayProject(project) {
-	while(container.children.length > 2) { // the form and the button
+	while(container.children.length > 2) { // exclude the form and the button
 		container.removeChild(container.lastElementChild)
 	}
 	container.appendChild(project);
