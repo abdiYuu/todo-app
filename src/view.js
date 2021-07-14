@@ -26,7 +26,8 @@ function makeProject() {
 	let dueDate = document.getElementById('date').value;
 	let proj = new Project(title, '' , dueDate, '', '', '');
 	projects.push(proj);
-	makeProjectSection(proj)
+	makeProjectSection(proj);
+	makeProjectTab(proj);
 	toggleForm();
 }
 
@@ -45,14 +46,19 @@ function makeProjectSection(proj) {
 	project.appendChild(projdue);
 
 	displayProject(project);
-	makeProjectTab(proj);
 }
 function makeProjectTab(proj) {
 	const tab = document.createElement('button');
 	tab.innerText = proj.title;
 	tab.id = projects.indexOf(proj);
+	tab.addEventListener('click', switchTab);
 	tabs.appendChild(tab);
 }
+
+function switchTab(e) {
+	let proj = projects[e.target.id]
+	makeProjectSection(proj)
+};
 
 
 function displayProject(project) {
