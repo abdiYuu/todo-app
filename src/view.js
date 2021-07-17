@@ -81,7 +81,11 @@ function taskForm() {
 }
 
 function makeTask() {
-	console.log('in progress')
+	let title = document.querySelector('.task-title').value;
+	let task = new Task(title);
+	//makeTaskCard(task);
+	tasks.push(task);
+	console.log(task);
 }
 
 taskbtn.addEventListener('click', taskForm);
