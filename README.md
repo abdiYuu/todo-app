@@ -1,3 +1,3 @@
 # todo-app
 
-todo:add form for project/task property entry
+todo:alternate date display between input and paragraph so user can edit the dueDate property

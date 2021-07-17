@@ -42,9 +42,10 @@ function makeProjectSection(proj) {
 	projdescription.classList.add('description'); //use setdescription here
 	projdescription.contentEditable = true;
 
-	const projdue = document.createElement('p');
+	const projdue = document.createElement('input');
 	projdue.classList.add('dueDate')
-	projdue.innerText = 'fillerdate' //use setduedate here
+	projdue.type = 'date'
+	projdue.innerText = 'No Due Date'
 	projdue.contentEditable = true;
 
         project.appendChild(projname);
