@@ -29,8 +29,8 @@ class Project {
 }
 	
 class Task {
-	constructor(title) {
-		this.title = title;
+	constructor(name) {
+		this.name = name;
 	}
 	setDueDate(dueDate) {
 		this.dueDate = dueDate;

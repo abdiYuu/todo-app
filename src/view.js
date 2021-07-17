@@ -61,6 +61,9 @@ function makeProjectTab(proj) {
 	tabs.appendChild(tab);
 }
 
+function addTaskToProject(proj) {
+} //placeholder
+
 function switchTab(e) {
 	let proj = projects[e.target.id]
 	makeProjectSection(proj)
@@ -73,7 +76,7 @@ function displayProject(project) {
 	container.appendChild(project);
 }
 
-function taskForm() {
+function toggleTaskForm() {
 	const form = document.querySelector('.task-form');
         form.classList.toggle('task-form-visibility');
         form.reset();
@@ -81,13 +84,32 @@ function taskForm() {
 }
 
 function makeTask() {
-	let title = document.querySelector('.task-title').value;
-	let task = new Task(title);
+	let name = document.getElementById('task-name').value;
+
+	if(tasks.find((task) => task.name === name)) {
+		alert('You already have that task listed');
+		return;
+	};
+
+	let task = new Task(name);
 	//makeTaskCard(task);
 	tasks.push(task);
 	console.log(task);
+	toggleTaskForm()
+	makeTaskCard(task);
 }
 
-taskbtn.addEventListener('click', taskForm);
+function makeTaskCard(task) {
+	let card = document.createElement('div');
+	let name = document.createElement('h1');
+
+	name.innerText = task.name;
+	
+	card.appendChild(name);
+	taskbar.appendChild(card);
+}
+
+
+taskbtn.addEventListener('click', toggleTaskForm);
 projbtn.addEventListener('click', toggleProjForm);
 
