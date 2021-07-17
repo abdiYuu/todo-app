@@ -9,17 +9,18 @@ class User {
 }
 
 class Project {
-	constructor(title, description, dueDate, priority, notes, checklist) {
-		this.title = title;
-		this.description = description;
-		this.dueDate = dueDate;
-		this.priority = priority;
-		this.notes = notes;
-		this.checklist = checklist;
+	constructor(name) {
+		this.name = name;
 		this.tasks = [];
 	}
 	addTask(task) {
 		this.tasks.push(task);
+	}
+	addDescription(description) {
+		this.description = description;
+	}
+	setDueDate(dueDate) {
+		this.dueDate = dueDate;
 	}
 
 	taskCount() {
@@ -28,13 +29,11 @@ class Project {
 }
 	
 class Task {
-	constructor(title, description, dueDate, priority, notes, checklist) {
+	constructor(title) {
 		this.title = title;
-		this.description = description;
+	}
+	setDueDate(dueDate) {
 		this.dueDate = dueDate;
-		this.priority = priority;
-		this.notes = notes;
-		this.checklist = checklist;
 	}
 }
 

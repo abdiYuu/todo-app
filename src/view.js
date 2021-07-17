@@ -10,25 +10,24 @@ const projbtn = document.querySelector('.btn_proj');
 const tabs = document.querySelector('.projects');
 
 
-let projects = []; //placeholder to test tab functionality;
-let tasks = []; //placeholder for tasks;
+let projects = [];
+let tasks = [];
 
 
-function toggleForm() {
-	const form = document.querySelector('form');
-	form.classList.toggle('visibility');
+function toggleProjForm() {
+	const form = document.querySelector('.proj-form');
+	form.classList.toggle('proj-form-visibility');
 	form.reset();
 	form.addEventListener('submit', makeProject);
 }
 
 function makeProject() {
-	let title = document.getElementById('title').value;
-	let dueDate = document.getElementById('date').value;
-	let proj = new Project(title, '' , dueDate, '', '', '');
+	let name = document.getElementById('proj-name').value;
+	let proj = new Project(name)
 	projects.push(proj);
 	makeProjectSection(proj);
 	makeProjectTab(proj);
-	toggleForm();
+	toggleProjForm();
 }
 
 function makeProjectSection(proj) {
@@ -36,20 +35,27 @@ function makeProjectSection(proj) {
         project.classList.add('project');
         project.id=projects.indexOf(proj);
 
-        const projtitle = document.createElement('h1');
-        projtitle.innerText = proj.title;
+        const projname = document.createElement('h1');
+        projname.innerText = proj.name;
+
+	const projdescription = document.createElement('p');
+	projdescription.classList.add('description'); //use setdescription here
+	projdescription.contentEditable = true;
 
 	const projdue = document.createElement('p');
-	projdue.innerText = 'Due: ' + proj.dueDate;
+	projdue.classList.add('dueDate')
+	projdue.innerText = 'fillerdate' //use setduedate here
+	projdue.contentEditable = true;
 
-        project.appendChild(projtitle);
+        project.appendChild(projname);
+	project.appendChild(projdescription);
 	project.appendChild(projdue);
 
 	displayProject(project);
 }
 function makeProjectTab(proj) {
 	const tab = document.createElement('button');
-	tab.innerText = proj.title;
+	tab.innerText = proj.name;
 	tab.id = projects.indexOf(proj);
 	tab.addEventListener('click', switchTab);
 	tabs.appendChild(tab);
@@ -60,7 +66,6 @@ function switchTab(e) {
 	makeProjectSection(proj)
 };
 
-
 function displayProject(project) {
 	while(container.children.length > 2) { // exclude the form and the button
 		container.removeChild(container.lastElementChild)
@@ -68,10 +73,17 @@ function displayProject(project) {
 	container.appendChild(project);
 }
 
+function taskForm() {
+	const form = document.querySelector('.task-form');
+        form.classList.toggle('task-form-visibility');
+        form.reset();
+        form.addEventListener('submit', makeTask);
+}
+
 function makeTask() {
 	console.log('in progress')
 }
 
-taskbtn.addEventListener('click', makeTask);
-projbtn.addEventListener('click', toggleForm);
+taskbtn.addEventListener('click', taskForm);
+projbtn.addEventListener('click', toggleProjForm);
 
