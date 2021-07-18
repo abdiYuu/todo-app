@@ -1,3 +1,3 @@
 # todo-app
 
-todo:alternate date display between input and paragraph so user can edit the dueDate property
+todo: allow users to drag and drop tasks into different projects;
