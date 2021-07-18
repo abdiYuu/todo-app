@@ -9,8 +9,9 @@ class User {
 }
 
 class Project {
-	constructor(name) {
+	constructor(name, dueDate) {
 		this.name = name;
+		this.dueDate = dueDate;
 		this.tasks = [];
 	}
 	addTask(task) {

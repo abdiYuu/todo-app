@@ -23,7 +23,8 @@ function toggleProjForm() {
 
 function makeProject() {
 	let name = document.getElementById('proj-name').value;
-	let proj = new Project(name)
+	let dueDate = 'No Due Date';
+	let proj = new Project(name, dueDate)
 	projects.push(proj);
 	makeProjectSection(proj);
 	makeProjectTab(proj);
@@ -42,11 +43,10 @@ function makeProjectSection(proj) {
 	projdescription.classList.add('description'); //use setdescription here
 	projdescription.contentEditable = true;
 
-	const projdue = document.createElement('input');
-	projdue.classList.add('dueDate')
-	projdue.type = 'date'
-	projdue.innerText = 'No Due Date'
-	projdue.contentEditable = true;
+	const projdue = document.createElement('p');
+	projdue.classList.add('proj-dueDate')
+	projdue.innerText = proj.dueDate;
+	projdue.addEventListener('click', changeDueDate);
 
         project.appendChild(projname);
 	project.appendChild(projdescription);
@@ -54,6 +54,35 @@ function makeProjectSection(proj) {
 
 	displayProject(project);
 }
+
+function changeDueDate(e) {
+	let parentnode = e.target.parentNode;
+	parentnode.removeChild(parentnode.lastElementChild);
+	let datePicker = document.createElement('input');
+	datePicker.type = 'date';
+	datePicker.addEventListener("change", setNewDate);
+	parentnode.appendChild(datePicker);
+}
+
+function setNewDate(e) {
+	let newdate = e.target.value;
+	let index = e.target.parentNode.id;
+
+        if(e.target.parentNode.classList.contains('project')) {
+                projects[index].setDueDate(newdate);
+        }
+        else {
+                tasks[index].setDueDate(newdate);
+        }
+
+	let dateDisplay = document.createElement('p');
+	dateDisplay.innerText = newdate;
+	dateDisplay.addEventListener('click', changeDueDate);
+	e.target.replaceWith(dateDisplay);
+	
+
+}
+
 function makeProjectTab(proj) {
 	const tab = document.createElement('button');
 	tab.innerText = proj.name;
@@ -93,7 +122,6 @@ function makeTask() {
 	};
 
 	let task = new Task(name);
-	//makeTaskCard(task);
 	tasks.push(task);
 	console.log(task);
 	toggleTaskForm()
@@ -102,11 +130,18 @@ function makeTask() {
 
 function makeTaskCard(task) {
 	let card = document.createElement('div');
+	card.classList.add('task');
+	card.id = tasks.indexOf(task);
 	let name = document.createElement('h1');
+	let dueDate  = document.createElement('p');
 
+	dueDate.classList.add('task-dueDate');
+	dueDate.addEventListener('click', changeDueDate);
 	name.innerText = task.name;
+	dueDate.innerText = 'No Due Date';
 	
 	card.appendChild(name);
+	card.appendChild(dueDate);
 	taskbar.appendChild(card);
 }
 
