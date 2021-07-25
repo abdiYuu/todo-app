@@ -42,6 +42,10 @@ let todoList = (function todoList() {
 				localStorage.setItem('todos', JSON.stringify(this.todos));
 			}
 		}
+		this.update = function() {
+			localStorage.setItem('projects', JSON.stringify(this.projects));
+			localStorage.setItem('todos', JSON.stringify(this.todos));
+		}
 	}
 
 	class Todo {
@@ -62,10 +66,12 @@ let todoList = (function todoList() {
 		}
 		addTodo(todo) {
 			this.todos.push(todo)
+			user.update();
 		}
 		removeTodo(todo) {
 			let index = this.todos.indexOf(todo);
 			this.todos.splice(index, 1);
+			user.update();
 		}
 	}
 	function makeTodo(name) {
